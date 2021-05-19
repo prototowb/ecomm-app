@@ -20,8 +20,8 @@ router.get('/signup', (req, res) => {
 
 router.post(
   '/signup',
-  handleErrors(signupTemplate),
   [requireEmail, requirePassword, requirePasswordConfirmation],
+  handleErrors(signupTemplate),
   async (req, res) => {
     const { email, password } = req.body;
     const user = await usersRepo.create({ email, password });
@@ -43,8 +43,8 @@ router.get('/signin', (req, res) => {
 
 router.post(
   '/signin',
-  handleErrors(signinTemplate),
   [requireEmailExists, requireValidPasswordForUser],
+  handleErrors(signinTemplate),
   async (req, res) => {
     const { email } = req.body;
 
